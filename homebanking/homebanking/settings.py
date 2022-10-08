@@ -84,8 +84,13 @@ WSGI_APPLICATION = 'homebanking.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'itbank.db',
+        'ENGINE': 'django.db.backends.pg2',
+        'NAME': 'df9mno0gch5s2b',
+        'HOST': 'ec2-18-209-78-11.compute-1.amazonaws.com',
+        'USER': 'epgepxfjsccxiv',
+        'PASSWORD': 'a5aa1cb2c67727c284dd2e874d58234746163279bd8f920f1e034479ecf3197c',
+        'PORT': 5432,
+
     },
 }
 
