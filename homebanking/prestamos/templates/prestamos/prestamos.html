@@ -1,0 +1,42 @@
+{% extends "webitbank/base.html" %}
+
+{% block title%} Préstamos {% endblock %}
+
+{% block content %}
+  <main>
+    <div class="conteinerTitulos">
+      <h3>Préstamos</h3>
+        <button class="btnConsultas btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Consultas y Operaciones
+        </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{% url 'turnos'%}">Solicitar préstamo</a></li>
+      </ul>
+    </div>
+    <div class="conteinerPrestamo">
+      <h3 class="prestamo">Podés solicitar tu préstamo en tu sucursal de lunes a viernes de 8 a 21hs</h3>
+      <!-- <img class=" imgPrestamo" src="../../public/images/prestamo.png" alt=""> -->
+    </div>
+    <hr>
+    <p style="font-size: 20px;" class="textoPrestamo">Sacá turno <a href="{% url 'turnos'%}">aquí</a> o pedí tu prestamo online llenando este formulario:</p>
+    <hr>
+    <div class="row"> 
+      <div class="col-md-10 mx-auto">
+        <p class="textoPrestamo">{{msj}}</p>
+        <!-- Formulario Solicitud de Prestamo-->       
+        <form action="" method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <table>
+                {{form.as_p}}             
+            </table>
+            <input type="submit" class="btnConsultas btn-secondary" value="Enviar"/>
+          </div>
+        </form>
+      <!--{{request.POST}}-->
+    </div>
+  </main>
+  <!--  pie de página principal -->
+
+
+{%endblock%}

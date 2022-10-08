@@ -1,0 +1,84 @@
+{% extends "webitbank/base.html" %}
+{%load static %}
+<link rel="stylesheet" href="{% static 'webitbank/imagenes' %}"/>
+<link rel="stylesheet" href="{% static 'webitbank/css' %}"/>
+{% block title%} Tus productos {% endblock %}
+
+
+{% block content %}
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane active" id="tusProductos" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+      <div class="row">
+        <h2 class="producto">TUS PRODUCTOS</h2>
+        <lauta>
+          <div class="cont">
+            
+              {% for cuenta in cuenta_list %}
+              <div class="product-card">
+                <h2 class="producto">Cuenta</h2>
+                {% if 'CAP' in cuenta.tipo_cuenta %}
+                <p class="titulo">CAJA DE AHORRO EN PESOS</p>
+                {% endif %}
+                {% if 'CAD' in cuenta.tipo_cuenta %}
+                <p class="titulo">CAJA DE AHORRO EN DOLARES</p>
+                {% endif %}
+                {% if 'CC' in cuenta.tipo_cuenta %}
+                <p class="titulo">CUENTA CORRIENTE</p>
+                {% endif %}
+                <p>Usuario: {{user}}</p>
+                <p>Saldo: ${{cuenta.balance}}</p>
+              </div>
+              {% endfor %}
+            
+              {% for tarjeta in tarjeta_list %}
+              <div class="product-card">
+                {% if 'CRED' in tarjeta.tipo %}
+                <h2 class="producto">TARJETA DE CREDITO</h2>
+                {% endif %}
+                {% if 'DEB' in tarjeta.tipo %}
+                <h2 class="producto">TARJETA DE DEBITO</h2>
+                {% endif %}
+                <p class="titulo">Numero de tarjeta {{tarjeta.numero_tarjeta}}</p>
+                {% if 'VS' in tarjeta.marca_tarjeta %}
+                <p>VISA</p>
+                {% endif %}
+                {% if 'MC' in tarjeta.marca_tarjeta %}
+                <p>MASTERCARD</p>
+                {% endif %}
+                {% if 'AE' in tarjeta.marca_tarjeta %}
+                <p>AMERICAN EXPRESS</p>
+                {% endif %}
+              </div>
+              {% endfor %}
+              
+            <div class="product-card">
+              <p class="titulo">Autenticación</p>
+              <input type="button" value="Generar Token" class="btn" onclick="Random();" data-bs-toggle="modal" data-bs-target="#exampleModal"/>  
+            </div>
+
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Tu token es:</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="text" id="tb" name="tb" />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </lauta>
+      </div>
+  </div>
+  <script src="{% static 'webitbank/token.js' %}"></script>
+</div>
+
+{% endblock %}
