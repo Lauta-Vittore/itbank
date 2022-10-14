@@ -33,7 +33,7 @@ def dolar(request):
 
 @login_required
 def noticias(request):
-    url = 'https://newsapi.org/v2/everything?q=Cryptocurrency&from=2022-08-01&sortBy=popularity&apiKey=533ada2ab21546568011c689d22edda6'
+    url = 'https://newsapi.org/v2/everything?q=Apple&from=2022-10-14&sortBy=popularity&apiKey=5748f93939494342ba75c4d6a0826332'
     crypto_news = requests.get(url).json()
     a = crypto_news['articles']
     desc = []
